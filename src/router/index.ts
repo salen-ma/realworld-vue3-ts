@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'home',
-        component: () => import(/* webpackChunkName: "home" */ '../views/home/index')
+        component: () => import('../views/home/index')
       },
       {
         path: '/login',

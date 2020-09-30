@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Settings',
   setup() {
-    return () => {
+    return () => (
       <div class="settings-page">
         <div class="container page">
           <div class="row">
@@ -38,6 +38,6 @@ export default defineComponent({
           </div>
         </div>
       </div>
-    }
+    )
   }
 })

@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Profile',
   setup() {
-    return () => {
+    return () => (
       <div class="profile-page">
 
         <div class="user-info">
@@ -89,6 +89,6 @@ export default defineComponent({
         </div>
 
       </div>
-    }
+    )
   }
 })

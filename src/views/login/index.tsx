@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Login',
   setup() {
-    return () => {
+    return () => (
       <div class="auth-page">
         <div class="container page">
           <div class="row">
@@ -37,6 +37,6 @@ export default defineComponent({
           </div>
         </div>
       </div>
-    }
+    )
   }
 })

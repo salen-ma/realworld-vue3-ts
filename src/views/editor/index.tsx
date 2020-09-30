@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Editor',
   setup() {
-    return () => {
+    return () => (
       <div class="editor-page">
         <div class="container page">
           <div class="row">
@@ -34,6 +34,6 @@ export default defineComponent({
           </div>
         </div>
       </div>
-    }
+    )
   }
 })

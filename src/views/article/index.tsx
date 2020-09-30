@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'Article',
   setup() {
-    return () => {
+    return () => (
       <div class="article-page">
 
         <div class="banner">
@@ -124,6 +124,6 @@ export default defineComponent({
         </div>
 
       </div>
-    }
+    )
   }
 })

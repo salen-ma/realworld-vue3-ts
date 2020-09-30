@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router';
 export default defineComponent({
   name: 'Layout',
   setup() {
-    return () => {
+    return () => (
       <>
         <nav class="navbar navbar-light">
           <div class="container">
@@ -41,6 +41,6 @@ export default defineComponent({
           </div>
         </footer>
       </>
-    }
+    )
   }
 })
