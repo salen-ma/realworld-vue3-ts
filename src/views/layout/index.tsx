@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import { RouterView } from 'vue-router';
+import { RouterView, RouterLink } from 'vue-router';
 
 export default defineComponent({
   name: 'Layout',
@@ -8,23 +8,23 @@ export default defineComponent({
       <>
         <nav class="navbar navbar-light">
           <div class="container">
-            <a class="navbar-brand" href="index.html">conduit</a>
+            <RouterLink to="/" class="navbar-brand">conduit</RouterLink>
             <ul class="nav navbar-nav pull-xs-right">
               <li class="nav-item">
-                <a class="nav-link active" href="">Home</a>
+                <RouterLink to="/" class="nav-link active">Home</RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">
+                <RouterLink class="nav-link" to="/editor">
                   <i class="ion-compose"></i>&nbsp;New Post
-                </a>
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">
+                <RouterLink class="nav-link" to="/settings">
                   <i class="ion-gear-a"></i>&nbsp;Settings
-                </a>
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Sign up</a>
+                <RouterLink class="nav-link" to="/login">Sign up</RouterLink>
               </li>
             </ul>
           </div>

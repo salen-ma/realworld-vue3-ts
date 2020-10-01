@@ -13,38 +13,38 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/login',
         name: 'login',
-        component: () => import(/* webpackChunkName: "login" */ '../views/login/index'),
+        component: () => import('../views/login/index'),
         props: { isLogin: true },
         meta: { noAuth: true }
       },
       {
         path: '/register',
         name: 'register',
-        component: () => import(/* webpackChunkName: "register" */ '../views/login/index'),
+        component: () => import('../views/login/index'),
         props: { isLogin: false },
         meta: { noAuth: true }
       },
       {
         path: '/profile/:username',
         name: 'profile',
-        component: () => import(/* webpackChunkName: "profile" */ '../views/profile/index'),
+        component: () => import('../views/profile/index'),
       },
       {
         path: '/settings',
         name: 'settings',
-        component: () => import(/* webpackChunkName: "settings" */ '../views/settings/index'),
+        component: () => import('../views/settings/index'),
         meta: { requiresAuth: true }
       },
       {
         path: '/editor/:slug?',
         name: 'editor',
-        component: () => import(/* webpackChunkName: "editor" */ '../views/editor/index'),
+        component: () => import('../views/editor/index'),
         meta: { requiresAuth: true }
       },
       {
         path: '/article/:slug',
         name: 'article',
-        component: () => import(/* webpackChunkName: "article" */ '../views/article/index'),
+        component: () => import('../views/article/index'),
       },
     ]
   }
