@@ -1,28 +1,41 @@
-import { defineComponent, InputHTMLAttributes } from 'vue';
-import { RouterLink } from 'vue-router'
-import { toRefs, reactive } from 'vue'
-import { User, register, login } from '../../api/user'
+import { defineComponent } from 'vue';
+import { Router, RouterLink, useRouter } from 'vue-router'
+import { Ref, toRefs, reactive, ref } from 'vue'
+import { register, login } from '../../api/user'
+import { Store, useStore } from 'vuex'
 
-const useSubmit = (isLogin) => {
+const useSubmit = (isLogin: Ref<boolean>, store: Store<any>, router: Router) => {
   const user = reactive({
     username: '',
     email: '',
     password: ''
   })
+  const errors = ref<{
+    [prop: string]: string
+  }>({})
+  const disabledSign = ref<boolean>(false) 
 
   const submit = async (e: Event) => {
     e.preventDefault()
+    disabledSign.value = true
     try {
-      const { data } = isLogin ?
+      const { data } = isLogin.value ?
         await login({ user: user }) :
         await register({ user: user })
+
+      store.commit('setUser', data.user)
+      router.push('/')
     } catch (err) {
-      console.log(err)
+      console.log(err, 'err')
+      errors.value = err.response.data.errors
     }
+    disabledSign.value = false
   }
 
   return {
     user,
+    errors,
+    disabledSign,
     submit
   }
 }
@@ -34,7 +47,10 @@ export default defineComponent({
   },
   setup(props) {
     const { isLogin } = toRefs(props)
-    const { user, submit } = useSubmit(isLogin)
+    const store = useStore()
+    const router = useRouter()
+    const { user, errors, disabledSign,  submit } = useSubmit(isLogin, store, router)
+    
     return () => (
       <div class="auth-page">
         <div class="container page">
@@ -50,9 +66,13 @@ export default defineComponent({
                 }
               </p>
 
-              {/* <ul class="error-messages">
-                <li>That email is already taken</li>
-              </ul> */}
+              <ul class="error-messages">
+                {
+                  Object.keys(errors.value).map((field, index) => (
+                    <li key={index}>{field} { errors.value[field] }</li>
+                  ))
+                }
+              </ul>
 
               <form>
                 {!isLogin.value &&
@@ -74,6 +94,7 @@ export default defineComponent({
                     class="form-control form-control-lg" type="password" placeholder="Password" />
                 </fieldset>
                 <button class="btn btn-lg btn-primary pull-xs-right"
+                  disabled={ disabledSign.value }
                   onClick={submit}>
                   { isLogin.value ? 'Sign in' : 'Sign up' }
                 </button>

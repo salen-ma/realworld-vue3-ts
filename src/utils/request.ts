@@ -9,7 +9,7 @@ try {
 } catch (err) {}
 
 export const request = axios.create({
-  baseURL: 'https://conduit.productionready.io'
+  baseURL: 'http://realworld.api.fed.lagounews.com'
 })
 
 request.interceptors.request.use(function (config) {
